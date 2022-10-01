@@ -20,4 +20,4 @@ stages:
     #   worker:
     #     depends_on: [api]
     #   frontend:
-    #     depends_on: [orders]
+    #     depends_on: [api]
