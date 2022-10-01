@@ -1,0 +1,21 @@
+# Read the full specification for the "Worker Service" type at:
+# https://aws.github.io/copilot-cli/docs/manifest/worker-service/
+
+# Your service name will be used in naming your resources like log groups, ECS services, etc.
+name: worker
+type: Worker Service
+
+image:
+  build: src/worker/Dockerfile
+
+cpu: 256
+memory: 512
+count: 1
+
+# The events can be be received from an SQS queue via the env var $COPILOT_QUEUE_URI.
+subscribe:
+  topics:
+    - name: orders
+      service: api
+  queue:
+    fifo: true

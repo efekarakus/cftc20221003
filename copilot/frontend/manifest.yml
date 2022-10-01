@@ -1,0 +1,39 @@
+# Read the full specification for the "Load Balanced Web Service" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/lb-web-service/
+
+name: frontend
+type: Load Balanced Web Service
+
+http:
+  alias: "coolblackbird.de"
+  path: "/"
+  healthcheck:
+    path: "/_healthcheck"
+
+image:
+  build: src/frontend/Dockerfile
+  port: 8080
+
+cpu: 256
+memory: 512
+count:
+  range: 1-10
+  cooldown:
+    in: 60s
+    out: 30s
+  cpu_percentage: 70
+  requests: 10
+exec: true
+
+env_file: src/frontend/.env
+
+secrets:
+  DB:
+    secretsmanager: "demo/test/mysql"
+  DB_PASSWORD:
+    secretsmanager: "demo/test/mysql:password::"
+#environments:
+#  test:
+#    count: 1               # Number of tasks to run for the "test" environment.
+#    deployment:            # The deployment strategy for the "test" environment.
+#       rolling: 'recreate' # Stops existing tasks before new ones are started for faster deployments.

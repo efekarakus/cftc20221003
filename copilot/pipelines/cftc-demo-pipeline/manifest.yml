@@ -1,0 +1,23 @@
+# For more info: https://aws.github.io/copilot-cli/docs/manifest/pipeline/
+
+# The name of the pipeline.
+name: cftc-demo-pipeline
+version: 1
+
+source:
+  provider: GitHub
+  properties:
+    branch: main
+    repository: https://github.com/efekarakus/cftc20221003
+
+stages:
+  - # The name of the environment.
+    name: test
+    # requires_approval: true
+    # test_commands: [echo 'running tests', make test]
+    # deployments:
+    #   api:
+    #   worker:
+    #     depends_on: [api]
+    #   frontend:
+    #     depends_on: [orders]

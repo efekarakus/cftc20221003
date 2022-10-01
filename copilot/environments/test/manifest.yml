@@ -1,0 +1,25 @@
+# Read the full specification for the "Environment" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/environment/
+
+name: test
+type: Environment
+
+http:
+  public:
+    access_logs: true
+    certificates:
+      - arn:aws:acm:us-west-2:615288112214:certificate/81b37947-5325-4b19-9a8f-f42022699862
+    # security_groups:
+    #   ingress:
+    #     restrict_to:
+    #       cdn: true
+  private:
+    certificates:
+      - arn:aws:acm:us-west-2:615288112214:certificate/8143e673-ec0c-4456-b0ec-a6f94b0697c3
+
+# cdn:
+#   terminate_tls: true
+#   certificate: arn:aws:acm:us-east-1:615288112214:certificate/dbfe65dc-bdd6-4927-8a10-5232baf5b073
+
+observability:
+  container_insights: true

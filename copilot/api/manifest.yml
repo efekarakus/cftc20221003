@@ -1,0 +1,30 @@
+# The manifest for the "api" service.
+# Read the full specification for the "Backend Service" type at:
+#  https://aws.github.io/copilot-cli/docs/manifest/backend-service/
+
+name: api
+type: Backend Service
+
+image:
+  location: public.ecr.aws/nginx/nginx:stable
+  port: 80
+
+http:
+  alias:
+    - name: "amazon.com"
+      hosted_zone: Z06187953O8X6RSDTEE0S
+  path: "/"
+  healthcheck: "/"
+
+network:
+  vpc:
+    placement: "private"
+
+publish:
+  topics:
+    - name: "orders"
+      fifo: true
+
+cpu: 256
+memory: 512
+count: 1
