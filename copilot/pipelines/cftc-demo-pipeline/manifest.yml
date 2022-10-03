@@ -11,8 +11,7 @@ source:
     repository: https://github.com/efekarakus/cftc20221003
 
 stages:
-  - # The name of the environment.
-    name: test
+  - name: test
     # requires_approval: true
     # test_commands: [echo 'running tests', make test]
     # deployments:
